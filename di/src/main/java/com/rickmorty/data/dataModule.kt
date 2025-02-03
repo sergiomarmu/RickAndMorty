@@ -34,9 +34,8 @@ val dataModule = module {
     single { Json { ignoreUnknownKeys = true } }
 
     // region OKHttp / Retrofit
-    single { provideCacheInterceptor() }
     single { provideHttpLoggingInterceptor() }
-    single { provideOkkHttpClient(get(), get(), get()) }
+    single { provideOkkHttpClient(get()) }
     single { provideRetrofit(get(), get()) }
     // endregion
 
@@ -67,28 +66,14 @@ val dataModule = module {
 // region Network
 
 // region Retrofit
-private fun provideCacheInterceptor() = Interceptor { chain ->
-    val response: okhttp3.Response = chain.proceed(chain.request())
-    val cacheControl = CacheControl.Builder()
-        .maxAge(1, TimeUnit.HOURS)
-        .build()
-    response.newBuilder()
-        .header("Cache-Control", cacheControl.toString())
-        .build()
-}
-
 private fun provideHttpLoggingInterceptor() = HttpLoggingInterceptor().apply {
     this.level = HttpLoggingInterceptor.Level.BODY
 }
 
 private fun provideOkkHttpClient(
-    applicationContext: Context,
-    cacheInterceptor: Interceptor,
     httpLoggingInterceptor: HttpLoggingInterceptor
 ) = OkHttpClient.Builder()
     .addInterceptor(httpLoggingInterceptor)
-    .cache(Cache(File(applicationContext.cacheDir, "network-cache"), 1L * 1024L * 1024L)) // 1 MiB
-    .addNetworkInterceptor(cacheInterceptor)
     .build()
 
 fun provideRetrofit(

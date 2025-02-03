@@ -18,7 +18,7 @@ Display a list of all Rick and Morty characters, a detailed view of each charact
 * Dependency injection - [Koin](https://insert-koin.io/)
 * Images loading and caching - [Coil](https://github.com/coil-kt/coil)
 * HTTP client - [Retrofit](https://square.github.io/retrofit/)
-* ...error handling, caching, offline support, and light/dark theme support
+* ...error handling, offline support, and light/dark theme support
 
 ### TECHNOLOGIES USED FOR TESTING
 * jUnit - [jUnit](https://junit.org/junit5/)
