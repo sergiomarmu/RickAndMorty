@@ -18,14 +18,14 @@ Display a list of all Rick and Morty characters, a detailed view of each charact
 * Dependency injection - [Koin](https://insert-koin.io/)
 * Images loading and caching - [Coil](https://github.com/coil-kt/coil)
 * HTTP client - [Retrofit](https://square.github.io/retrofit/)
-...error handling, caching, offline support, and light/dark theme support
+* ...error handling, caching, offline support, and light/dark theme support
 
 ### TECHNOLOGIES USED FOR TESTING
 * jUnit - [jUnit](https://junit.org/junit5/)
 * Mockk - [Mockk](https://mockk.io/)
 * MockWebServer - [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)
 * KotlinCoroutinesTest - [KotlinCoroutinesTest](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/)
-... using the Arrange-Act-Assert pattern, also known as the AAA.
+* ... using the Arrange-Act-Assert pattern, also known as the AAA.
 
 ### ARCHITECTURE
 I have used an architecture based on different modules using clean architecture:
