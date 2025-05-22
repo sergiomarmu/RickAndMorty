@@ -19,7 +19,7 @@ jobs:
           cache: gradle
 
       - name: Load Google Service json
-        with:
+        env:
             INPUT: ${{ secrets.GOOGLE_SERVICES }}
         run: echo $INPUT | base64 -di > application/google-services.json
 
