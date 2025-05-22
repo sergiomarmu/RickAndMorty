@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -44,5 +45,9 @@ dependencies {
     // region Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.compose)
+    // endregion
+
+    // region Firebase Boom
+    implementation(platform(libs.firebase.boom))
     // endregion
 }
