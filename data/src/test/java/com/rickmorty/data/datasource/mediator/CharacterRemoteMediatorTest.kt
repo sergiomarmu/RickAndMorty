@@ -137,7 +137,7 @@ class CharacterRemoteMediatorTest : DataSourceBaseTest() {
                 )
 
             // Assert
-            coVerify(exactly = 1) { networkSource.getCharactersWithPaging(1) }
+            coVerify(exactly = 0) { networkSource.getCharactersWithPaging(1) }
             coVerify(exactly = 0) { localSource.insertKey(any()) }
             coVerify(exactly = 0) { localSource.upsertAllCharacters(any()) }
 

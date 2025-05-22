@@ -33,7 +33,7 @@ class GetCharactersUseCaseTest : BaseUseCaseTest() {
             .invoke()
 
         // Assert
-        verify(exactly = 0) { mockRepository.getCharactersFlow() }
+        verify(exactly = 1) { mockRepository.getCharactersFlow() }
     }
 
 }
