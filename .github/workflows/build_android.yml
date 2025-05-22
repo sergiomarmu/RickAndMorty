@@ -21,7 +21,8 @@ jobs:
       - name: Load Google Service json
         env:
             INPUT: ${{ secrets.GOOGLE_SERVICES }}
-        run: echo $INPUT | base64 -di > application/google-services.json
+        run: cat $INPUT
+            echo $INPUT | base64 --decode > application/google-services.json
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
