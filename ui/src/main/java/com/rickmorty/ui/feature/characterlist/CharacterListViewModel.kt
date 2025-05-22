@@ -6,6 +6,9 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.rickmorty.domain.usecase.character.GetCharactersUseCase
 import com.rickmorty.ui.utils.parcelable.character.toCharacterUI
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 
 class CharacterListViewModel(

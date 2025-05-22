@@ -145,7 +145,6 @@ class CharacterNetworkDataSourceTest : DataSourceBaseTest() {
         // Throw DataException.Network.Unparseable exception
     }
 
-
     @After
     fun closeServer() {
         fakeServer.shutdown()
