@@ -8,6 +8,7 @@ on:
 
 jobs:
   unit-tests:
+    environment: debug
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +31,7 @@ jobs:
         run: ./gradlew testDebugUnitTest
 
   build:
+    environment: debug
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
