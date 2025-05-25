@@ -20,6 +20,9 @@ Display a list of all Rick and Morty characters, a detailed view of each charact
 * HTTP client - [Retrofit](https://square.github.io/retrofit/)
 * ...error handling, offline support, and light/dark theme support
 
+### CI/CD
+* GitHub Actions - Unit test + Build + Local Distribution
+
 ### TECHNOLOGIES USED FOR TESTING
 * jUnit - [jUnit](https://junit.org/junit5/)
 * Mockk - [Mockk](https://mockk.io/)
