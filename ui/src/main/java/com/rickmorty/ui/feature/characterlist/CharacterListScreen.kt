@@ -204,7 +204,7 @@ annotation class Previews
 
 @Previews
 @Composable
-fun CharacterListSuccessScreenPreview(
+internal fun CharacterListSuccessScreenPreview(
     @PreviewParameter(CharacterListParameterProvider::class) item: List<CharacterUI>
 ) = RickMortyTheme {
     CharacterListSuccessScreen(
