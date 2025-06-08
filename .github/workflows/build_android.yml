@@ -95,3 +95,7 @@ jobs:
         with:
           name: Rick And Morty App debug
           path: application/build/outputs/apk/debug/application-debug.apk
+
+permissions:
+  contents: read
+  pull-requests: read
