@@ -29,6 +29,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -54,6 +55,13 @@ android {
 
     @Suppress("UnstableApiUsage")
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
+
+    // To address the issue of minor image differences in CI/CD (machines).
+    screenshotTests {
+        //Image Difference Threshold
+        imageDifferenceThreshold = 0.005f
+    }
+
 }
 
 dependencies {

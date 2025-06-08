@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+/application/google-services.json
+/.idea/runConfigurations.xml
+/.idea/vcs.xml
+/.idea/AndroidProjectSystem.xml
