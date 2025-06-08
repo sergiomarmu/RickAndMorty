@@ -104,7 +104,7 @@ fun CharacterListItem(
 
             Text(
                 text = item.status.toString(),
-                color = statusColor
+                color = Color.Red
             )
         }
     }
