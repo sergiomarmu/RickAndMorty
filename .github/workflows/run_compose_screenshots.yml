@@ -34,3 +34,6 @@ jobs:
             git add .
             git commit -m 'Updated compose screen shot tests'
             git push
+
+    permissions:
+      contents: write
