@@ -116,7 +116,7 @@ annotation class Previews
 
 @Previews
 @Composable
-fun CharacterListItemPreview(
+internal fun CharacterListItemPreview(
     @PreviewParameter(CharacterListItemParameterProvider::class) item: CharacterUI
 ) = RickMortyTheme {
     CharacterListItem(
