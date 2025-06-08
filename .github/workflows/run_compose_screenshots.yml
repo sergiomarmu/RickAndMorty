@@ -1,7 +1,7 @@
 name: Run compose screenshots
 
 on:
-  workflow_dispatch:
+  push
 
 jobs:
   compose-screenshot:
@@ -19,7 +19,7 @@ jobs:
       - name: Load Google Service json
         env:
           GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
-        run:  echo $GOOGLE_SERVICES | base64 --decode > application/google-services.json
+        run: echo $GOOGLE_SERVICES | base64 --decode > application/google-services.json
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew :ui:updateDebugScreenshotTest
 
       - name: Commit and push images
-        run:
+        run: |
             git config --global user.name "${{ github.actor }}"
             git config --global user.email "${{ github.actor }}@users.noreply.github.com"
             git add .
