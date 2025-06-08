@@ -47,7 +47,7 @@ jobs:
 
       - name: Install Git LFS for PNG Files
         run: |
-          sudo apt-get install git-lfs
+          brew install git-lfs
           git lfs install
 
       - name: Pull LFS files
