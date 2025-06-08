@@ -56,7 +56,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Run Unit test with Gradle
+      - name: Validate Screen Shot test with Gradle
         run: ./gradlew :ui:validateDebugScreenshotTest
 
       - name: Upload compose screenshot test report
