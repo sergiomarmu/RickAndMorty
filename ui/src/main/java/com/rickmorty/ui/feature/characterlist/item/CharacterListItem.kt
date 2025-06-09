@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -32,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.rickmorty.ui.R
 import com.rickmorty.ui.ui.theme.RickMortyTheme
 import com.rickmorty.ui.utils.parcelable.character.CharacterUI
 
@@ -68,10 +66,7 @@ fun CharacterListItem(
         val model = ImageRequest
             .Builder(LocalContext.current)
             .data(
-                if (LocalInspectionMode.current)
-                    R.drawable.crocubot
-                else
-                    item.image
+                item.image
             )
             .crossfade(true)
             .build()
