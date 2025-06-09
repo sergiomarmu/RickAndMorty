@@ -42,7 +42,7 @@ fun CharacterDetail(
     modifier: Modifier = Modifier
 ) = Column(
     modifier = modifier
-        .padding(10.dp)
+        .padding(8.dp)
         .fillMaxSize()
         .verticalScroll(rememberScrollState()),
     verticalArrangement = Arrangement.Top,
