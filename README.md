@@ -21,7 +21,10 @@ Display a list of all Rick and Morty characters, a detailed view of each charact
 * ...error handling, offline support, and light/dark theme support
 
 ### CI/CD
-* GitHub Actions - Unit test + Build + Local Distribution
+* GitHub Actions
+    * Unit test + Screenshot Testing
+    * Build
+    * Local Distribution
 
 ### TECHNOLOGIES USED FOR TESTING
 * jUnit - [jUnit](https://junit.org/junit5/)
