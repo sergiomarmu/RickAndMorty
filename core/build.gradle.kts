@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.rickmorty"
-    compileSdk = 34
+    namespace = "com.rickmorty.data"
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 32
@@ -34,36 +33,13 @@ android {
 }
 
 dependencies {
-    // region Dependencies
-    implementation(project(":domain"))
-    implementation(project(":data"))
-    implementation(project(":core"))
-    // endregion
-
-    // region Kotlinx
-    implementation(libs.kotlinx.serialization.json)
-    // endregion
-
-    // region SquareUp
-    implementation(libs.retrofit)
-    implementation(libs.retrofitKotlinConverter)
-    implementation(libs.gson)
-    implementation(platform(libs.okhttp.bom))
-    implementation(libs.okhttp)
-    implementation(libs.logging.interceptor)
-    // endregion
-
-    // region Paging
-    implementation(libs.paging.runtime)
-    // endregion
-
-    // Room
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
-    //
+    // region kotlinx
+    implementation(libs.kotlinx.coroutines.core)
+    // endregion kotlinx
 
     // region Koin
     implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
+    implementation(libs.koin.annotations)
+    implementation(libs.koin.ksp)
     // endregion
 }

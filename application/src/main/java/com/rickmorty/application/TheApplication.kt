@@ -1,6 +1,7 @@
 package com.rickmorty.application
 
 import android.app.Application
+import com.rickmorty.core.coreModule
 import com.rickmorty.data.dataModule
 import com.rickmorty.domain.domainModule
 import com.rickmorty.ui.di.uiModule
@@ -19,7 +20,8 @@ class TheApplication : Application() {
                 listOf(
                     uiModule,
                     domainModule,
-                    dataModule
+                    dataModule,
+                    coreModule
                 )
             )
         }
