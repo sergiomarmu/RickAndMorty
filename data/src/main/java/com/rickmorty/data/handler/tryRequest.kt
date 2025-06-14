@@ -1,5 +1,6 @@
 package com.rickmorty.data.handler
 
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerializationException
@@ -19,10 +20,11 @@ import kotlin.coroutines.cancellation.CancellationException
  */
 @Throws(DataException.Network::class, DataException.Unexpected::class)
 suspend inline fun <reified T> tryRequest(
+    ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
     crossinline request: suspend () -> Response<T>
 ): T = try {
     try {
-        withContext(Dispatchers.IO) { request() }.let {
+        withContext(ioDispatcher) { request() }.let {
             if (it.isSuccessful) it.body() ?: when {
                 null is T ->
                     null as T
