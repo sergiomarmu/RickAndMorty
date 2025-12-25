@@ -11,6 +11,8 @@ import com.rickmorty.data.datasource.network.character.dto.paging.CharacterPagin
 import com.rickmorty.data.handler.DataException
 import com.rickmorty.data.utils.JsonResourceReader
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -31,6 +33,13 @@ class CharacterNetworkDataSourceTest : DataSourceBaseTest() {
             "network_characters_correct_response.json"
         private const val CHARACTERS_JSON_PATH_BAD_RESPONSE = "network_characters_bad_response.json"
     }
+
+    /**
+     * Share TestCoroutineScheduler between dispatcher
+     * and runTest to ensure consistent virtual time.
+     */
+    private val testScheduler = TestCoroutineScheduler()
+    private val testDispatcher = StandardTestDispatcher(testScheduler)
 
     private lateinit var fakeServer: MockWebServer
     private lateinit var api: RickAndMortyApi
@@ -60,11 +69,16 @@ class CharacterNetworkDataSourceTest : DataSourceBaseTest() {
             .create(RickAndMortyApi::class.java)
 
         // Create Source
-        dataSource = CharacterNetworkDataSourceImpl(api)
+        dataSource = CharacterNetworkDataSourceImpl(
+            ioDispatcher = testDispatcher,
+            api = api
+        )
     }
 
     @Test
-    fun should_returnASuccessResult_when_apiIsCalled() = runTest {
+    fun should_returnASuccessResult_when_apiIsCalled() = runTest(
+        context = testDispatcher
+    ) {
         // Arrange
         val info = CharacterPagingInfoDTO(
             count = 100,
@@ -109,7 +123,9 @@ class CharacterNetworkDataSourceTest : DataSourceBaseTest() {
     }
 
     @Test(expected = DataException.Network.Unexpected::class)
-    fun should_returnAUnexpectedException_when_apiIsCalledAndServerIsDown() = runTest {
+    fun should_returnAUnexpectedException_when_apiIsCalledAndServerIsDown() = runTest(
+        context = testDispatcher
+    ) {
         // Arrange
         val mockResponse = MockResponse().apply {
             setResponseCode(500)
@@ -126,7 +142,9 @@ class CharacterNetworkDataSourceTest : DataSourceBaseTest() {
     }
 
     @Test(expected = DataException.Network.Unparseable::class)
-    fun should_returnAUnparseableException_when_apiIsCalledAndResponseCannotBeParsed() = runTest {
+    fun should_returnAUnparseableException_when_apiIsCalledAndResponseCannotBeParsed() = runTest(
+        context = testDispatcher
+    ) {
         // Arrange
         val jsonResponse = jsonResourceReader.fromPath(CHARACTERS_JSON_PATH_BAD_RESPONSE)
 

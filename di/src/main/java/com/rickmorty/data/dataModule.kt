@@ -7,6 +7,8 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.rickmorty.core.dispatcher.DefaultDispatcher
+import com.rickmorty.core.dispatcher.IODispatcher
 import com.rickmorty.data.datasource.local.character.CharacterLocalDataSource
 import com.rickmorty.data.datasource.local.character.CharacterLocalDataSourceImpl
 import com.rickmorty.data.datasource.local.character.db.AppRoomDatabase
@@ -23,6 +25,7 @@ import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import java.io.File
@@ -51,7 +54,7 @@ val dataModule = module {
 
     // region Source
     single<CharacterLocalDataSource> { CharacterLocalDataSourceImpl(get(), get(), get()) }
-    single<CharacterNetworkDataSource> { CharacterNetworkDataSourceImpl(get()) }
+    single<CharacterNetworkDataSource> { CharacterNetworkDataSourceImpl(get(qualifier<IODispatcher>()),get()) }
     // endregion
 
     // region Pager

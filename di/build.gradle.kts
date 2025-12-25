@@ -37,6 +37,7 @@ dependencies {
     // region Dependencies
     implementation(project(":domain"))
     implementation(project(":data"))
+    implementation(project(":core"))
     // endregion
 
     // region Kotlinx

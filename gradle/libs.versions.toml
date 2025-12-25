@@ -16,6 +16,7 @@ coreTesting = "2.2.0"
 # Koin Di
 # https://insert-koin.io/docs/reference/koin-android/get-instances
 koin-bom = "4.0.1"
+koin-annotations = "2.0.0"
 
 # KotlinX
 # https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test
@@ -24,6 +25,8 @@ kotlinxCoroutinesTest = "1.9.0"
 kotlinxSerialitzationPlugin = "2.0.20"
 # https://github.com/Kotlin/kotlinx.serialization
 kotlinxSerialitzation = "1.7.3"
+# https://github.com/Kotlin/kotlinx.coroutines
+kotlinxCoroutinesCore = "1.10.2"
 
 # Squareup
 retrofit = "2.11.0"
@@ -72,9 +75,12 @@ androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testin
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
+koin-ksp = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
 
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialitzation" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofitKotlinConverter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationConverter" }

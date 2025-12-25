@@ -6,11 +6,20 @@ import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 
 class GetCharactersUseCaseTest : BaseUseCaseTest() {
+
+    /**
+     * Share TestCoroutineScheduler between dispatcher
+     * and runTest to ensure consistent virtual time.
+     */
+    private val testScheduler = TestCoroutineScheduler()
+    private val testDispatcher = StandardTestDispatcher(testScheduler)
 
     @MockK
     private lateinit var mockRepository: CharacterRepository
@@ -20,11 +29,16 @@ class GetCharactersUseCaseTest : BaseUseCaseTest() {
     @Before
     override fun setUp() {
         super.setUp()
-        useCase = GetCharactersUseCase(mockRepository)
+        useCase = GetCharactersUseCase(
+            defaultDispatcher = testDispatcher,
+            repository = mockRepository
+        )
     }
 
     @Test
-    fun should_callRepository_when_useCaseIsInvoked() = runTest {
+    fun should_callRepository_when_useCaseIsInvoked() = runTest(
+        context = testDispatcher
+    ) {
         // Arrange
         every { mockRepository.getCharactersFlow() } returns emptyFlow()
 
